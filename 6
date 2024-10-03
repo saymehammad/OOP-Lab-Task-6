@@ -1,0 +1,58 @@
+# Parent class
+class Course:
+    def __init__(self, course_code: str, course_name: str):
+        """Constructor to initialize course code and course name."""
+        self.course_code = course_code
+        self.course_name = course_name
+
+    def display_info(self):
+        """Method to display the course code and name."""
+        print(f"Course Code: {self.course_code}, Course Name: {self.course_name}")
+
+# Child class UndergraduateCourse
+class UndergraduateCourse(Course):
+    def __init__(self, course_code: str, course_name: str, year_level: int):
+        """Constructor to initialize course code, course name, and year level."""
+        super().__init__(course_code, course_name)
+        self.year_level = year_level
+
+    def additional_info(self):
+        """Method to display the additional information (year level)."""
+        print(f"Year Level: {self.year_level}")
+
+# Child class GraduateCourse
+class GraduateCourse(Course):
+    def __init__(self, course_code: str, course_name: str, research_area: str):
+        """Constructor to initialize course code, course name, and research area."""
+        super().__init__(course_code, course_name)
+        self.research_area = research_area
+
+    def additional_info(self):
+        """Method to display the additional information (research area)."""
+        print(f"Research Area: {self.research_area}")
+
+# Function to register a course
+def register_course():
+    """Function to register an undergraduate or graduate course based on user input."""
+    print("Course Registration")
+    course_type = input("Enter the course type (undergraduate/graduate): ").strip().lower()
+    
+    course_code = input("Enter the course code: ").strip()
+    course_name = input("Enter the course name: ").strip()
+
+    if course_type == "undergraduate":
+        year_level = int(input("Enter the year level (1, 2, 3, 4): "))
+        course = UndergraduateCourse(course_code, course_name, year_level)
+    elif course_type == "graduate":
+        research_area = input("Enter the research area: ").strip()
+        course = GraduateCourse(course_code, course_name, research_area)
+    else:
+        print("Invalid course type! Please enter 'undergraduate' or 'graduate'.")
+        return
+
+    # Display the course information
+    course.display_info()
+    course.additional_info()
+
+# Example usage of the function
+register_course()
